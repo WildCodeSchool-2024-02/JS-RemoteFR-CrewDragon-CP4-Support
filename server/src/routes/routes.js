@@ -1,9 +1,12 @@
 const router = require("express").Router();
 
+// Middleware
+const { hashPassword, verifyPassword } = require("../middleware/authService");
+
 // Auth routes
 const { login, register } = require("../controllers/authController");
 
-router.get("/login", login);
-router.get("/register", register);
+router.post("/login", verifyPassword, login);
+router.post("/register", hashPassword, register);
 
 module.exports = router;
