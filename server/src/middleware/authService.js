@@ -33,6 +33,8 @@ const verifyPassword = async (req, res, next) => {
 	try {
 		const isPasswordValid = await argon2.verify(user.password, password);
 		if (isPasswordValid) {
+			delete user.password;
+			req.user = user;
 			next();
 		} else {
 			res.status(400).send({ message: "Invalid Password" });

@@ -1,7 +1,13 @@
 const { create } = require("../models/userModel");
+const { generateToken } = require("../middleware/jwt");
 
 const login = (req, res, next) => {
-	res.send("Login route");
+	const token = generateToken(req.user);
+	res.cookie("token", token, {
+		httpOnly: true,
+		sameSite: "strict",
+	});
+	res.status(200).send({ token });
 };
 
 const register = async (req, res, next) => {
