@@ -25,4 +25,20 @@ router.get("/sessions/:id", verifyToken, getSessionById);
 router.put("/sessions/:id", verifyToken, isTrainer, updateSession);
 router.delete("/sessions/:id", verifyToken, isTrainer, deleteSession);
 
+// Support routes
+
+const {
+	createSupport,
+	getSupports,
+	getSupportById,
+	updateSupport,
+	deleteSupport,
+} = require("../controllers/supportController");
+
+router.post("/supports", verifyToken, createSupport);
+router.get("/supports", verifyToken, getSupports);
+router.get("/supports/:id", verifyToken, getSupportById);
+router.put("/supports/:id", verifyToken, updateSupport);
+router.delete("/supports/:id", verifyToken, deleteSupport);
+
 module.exports = router;

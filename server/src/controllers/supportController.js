@@ -4,9 +4,9 @@ const {
 	getById,
 	update,
 	destroy,
-} = require("../models/sessionModel");
+} = require("../models/supportModel");
 
-const createSession = async (req, res, next) => {
+const createSupport = async (req, res, next) => {
 	try {
 		const session = await create(req.body);
 		res.status(201).send(session);
@@ -15,7 +15,7 @@ const createSession = async (req, res, next) => {
 	}
 };
 
-const getSessions = async (req, res, next) => {
+const getSupports = async (req, res, next) => {
 	try {
 		const sessions = await getAll();
 		res.status(200).send(sessions);
@@ -24,7 +24,7 @@ const getSessions = async (req, res, next) => {
 	}
 };
 
-const getSessionById = async (req, res, next) => {
+const getSupportById = async (req, res, next) => {
 	try {
 		const session = await getById(+req.params.id);
 		if (!session) {
@@ -36,7 +36,7 @@ const getSessionById = async (req, res, next) => {
 	}
 };
 
-const updateSession = async (req, res, next) => {
+const updateSupport = async (req, res, next) => {
 	try {
 		const session = await update(+req.params.id, req.body);
 		res.status(200).send(session);
@@ -45,7 +45,7 @@ const updateSession = async (req, res, next) => {
 	}
 };
 
-const deleteSession = async (req, res, next) => {
+const deleteSupport = async (req, res, next) => {
 	try {
 		const session = await destroy(+req.params.id);
 		res.status(200).send(session);
@@ -55,9 +55,9 @@ const deleteSession = async (req, res, next) => {
 };
 
 module.exports = {
-	createSession,
-	getSessions,
-	getSessionById,
-	updateSession,
-	deleteSession,
+	createSupport,
+	getSupports,
+	getSupportById,
+	updateSupport,
+	deleteSupport,
 };
