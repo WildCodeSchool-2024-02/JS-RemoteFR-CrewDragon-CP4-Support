@@ -45,6 +45,6 @@ router.put("/supports/:id", verifyToken, updateSupport);
 router.delete("/supports/:id", verifyToken, deleteSupport);
 router.post("/supports/:id/like", verifyToken, isLike);
 router.post("/supports/:id/dislike", verifyToken, isUnLike);
-router.post("/supports/:id/is_done", verifyToken, isDone);
+router.post("/supports/:id/is_done", verifyToken, isTrainer, isDone);
 
 module.exports = router;
