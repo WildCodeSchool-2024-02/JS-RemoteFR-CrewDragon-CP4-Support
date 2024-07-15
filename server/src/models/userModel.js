@@ -1,4 +1,5 @@
 const prisma = require("../db/prisma");
+const { get } = require("../routes/routes");
 
 /**
  * CRUD with Prisma
@@ -15,6 +16,15 @@ const create = async (user) => {
 const getById = async (id) => {
 	return await prisma.user.findUnique({
 		where: { id },
+	});
+};
+
+// Read Email
+const getByEmail = async (email) => {
+	return await prisma.user.findUnique({
+		where: {
+			email: email,
+		},
 	});
 };
 
@@ -41,6 +51,7 @@ const destroy = async (id) => {
 module.exports = {
 	create,
 	getById,
+	getByEmail,
 	getAll,
 	update,
 	destroy,

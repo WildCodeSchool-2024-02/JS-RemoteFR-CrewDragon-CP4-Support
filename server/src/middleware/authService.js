@@ -1,5 +1,5 @@
 const argon2 = require("argon2");
-
+const { getByEmail } = require("../models/userModel");
 const hashingOptions = {
 	type: argon2.argon2id,
 	memoryCost: 19 * 2 ** 10,
@@ -22,11 +22,16 @@ const hashPassword = async (req, res, next) => {
 };
 
 const verifyPassword = async (req, res, next) => {
+	const { password, email } = req.body;
+
+	if (!password) {
+		return res.status(400).send({ message: "Password is required" });
+	}
+
+	const user = await getByEmail(email);
+
 	try {
-		const isPasswordValid = await argon2.verify(
-			req.body.password,
-			req.user.password
-		);
+		const isPasswordValid = await argon2.verify(user.password, password);
 		if (isPasswordValid) {
 			next();
 		} else {
