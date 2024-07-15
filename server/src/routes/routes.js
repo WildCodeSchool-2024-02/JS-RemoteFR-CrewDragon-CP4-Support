@@ -32,6 +32,9 @@ const {
 	getSupports,
 	getSupportById,
 	updateSupport,
+	isLike,
+	isUnLike,
+	isDone,
 	deleteSupport,
 } = require("../controllers/supportController");
 
@@ -40,5 +43,8 @@ router.get("/supports", verifyToken, getSupports);
 router.get("/supports/:id", verifyToken, getSupportById);
 router.put("/supports/:id", verifyToken, updateSupport);
 router.delete("/supports/:id", verifyToken, deleteSupport);
+router.post("/supports/:id/like", verifyToken, isLike);
+router.post("/supports/:id/dislike", verifyToken, isUnLike);
+router.post("/supports/:id/is_done", verifyToken, isDone);
 
 module.exports = router;
