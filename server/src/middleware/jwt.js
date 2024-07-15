@@ -7,7 +7,7 @@ const generateToken = (user) => {
 };
 
 const verifyToken = (req, res, next) => {
-	const token = req.headers.authorization;
+	const token = req.headers.authorization.split(" ")[1];
 
 	if (!token) {
 		return res.status(401).send({ message: "Token is required" });
@@ -22,7 +22,16 @@ const verifyToken = (req, res, next) => {
 	}
 };
 
+const isTrainer = (req, res, next) => {
+	if (req.user.role === "TRAINER") {
+		next();
+	} else {
+		res.status(403).send({ message: "Unauthorized" });
+	}
+};
+
 module.exports = {
 	generateToken,
 	verifyToken,
+	isTrainer,
 };
