@@ -19,6 +19,7 @@ const {
 	getSessionById,
 	updateSession,
 	deleteSession,
+	userSession,
 } = require("../controllers/sessionController");
 
 router.post("/sessions", verifyToken, isTrainer, createSession);
@@ -27,6 +28,7 @@ router.get("/sessions", verifyToken, getSessions);
 router.get("/sessions/:id", verifyToken, getSessionById);
 router.put("/sessions/:id", verifyToken, isTrainer, updateSession);
 router.delete("/sessions/:id", verifyToken, isTrainer, deleteSession);
+router.get("/sessions/:id/users", verifyToken, userSession);
 
 // Support routes
 

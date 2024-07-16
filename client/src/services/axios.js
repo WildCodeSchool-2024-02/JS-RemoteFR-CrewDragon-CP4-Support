@@ -48,6 +48,10 @@ export const joinSession = async (id) => {
 	return await instance.put(`/sessions/${id}/join`);
 };
 
+export const userSession = async (id) => {
+	return await instance.get(`/sessions/${id}/users`);
+};
+
 /**
  * All routes related to supports
  */

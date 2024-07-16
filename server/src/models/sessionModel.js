@@ -83,6 +83,15 @@ const join = async (id, user) => {
 	});
 };
 
+const userWithSessions = async (id) => {
+	return await prisma.user.findUnique({
+		where: { id },
+		include: {
+			sessions: true,
+		},
+	});
+};
+
 module.exports = {
 	create,
 	getById,
@@ -90,4 +99,5 @@ module.exports = {
 	update,
 	destroy,
 	join,
+	userWithSessions,
 };
