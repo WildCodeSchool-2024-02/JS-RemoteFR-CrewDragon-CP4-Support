@@ -7,7 +7,11 @@ const login = (req, res, next) => {
 		httpOnly: true,
 		sameSite: "strict",
 	});
-	res.status(200).json({ message: "Login successful" });
+	res.status(200).json({
+		name: req.user.name,
+		email: req.user.email,
+		role: req.user.role,
+	});
 };
 
 const register = async (req, res, next) => {

@@ -1,16 +1,6 @@
-import { getSessions } from "../services/axios";
-
-import { useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 function SessionsList() {
-	const [sessions, setSessions] = useState([]);
-
-	useEffect(() => {
-		const fetchSessions = async () => {
-			const response = await getSessions();
-			setSessions(response.data);
-		};
-		fetchSessions();
-	}, []);
+	const { sessions } = useLoaderData();
 
 	return (
 		<section>

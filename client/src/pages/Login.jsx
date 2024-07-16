@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { login } from "../services/axios";
+import { useUser } from "../contexts/userContext";
+import { Link } from "react-router-dom";
 function Login() {
+	const { handleLogin } = useUser();
 	const [user, setUser] = useState({
 		email: "tony@admin.com",
 		password: "tony",
@@ -16,7 +19,7 @@ function Login() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const response = await login(user);
-		console.log(response.data);
+		handleLogin(response.data);
 	};
 
 	return (
