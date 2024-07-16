@@ -17,6 +17,10 @@ export const login = async (user) => {
 	return await instance.post("/login", user);
 };
 
+export const logout = async () => {
+	return await instance.post("/logout");
+};
+
 /**
  * All routes related to sessions
  */

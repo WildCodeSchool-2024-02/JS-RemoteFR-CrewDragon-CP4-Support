@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import App from "./pages/App.jsx";
 import Register from "./pages/Register.jsx";
@@ -14,6 +14,7 @@ import { UserContextProvider } from "./contexts/userContext";
 
 // Add CSS
 import "./index.css";
+import "react-toastify/dist/ReactToastify.min.css";
 
 /**
  * Appel axios
@@ -62,6 +63,19 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
 		<UserContextProvider>
 			<RouterProvider router={router} />
+			<ToastContainer
+				position="top-right"
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss={false}
+				draggable
+				pauseOnHover={false}
+				theme="colored"
+				transition:Bounce
+			/>
 		</UserContextProvider>
 	</React.StrictMode>
 );

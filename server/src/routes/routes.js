@@ -5,10 +5,11 @@ const { hashPassword, verifyPassword } = require("../middleware/authService");
 const { verifyToken, isTrainer } = require("../middleware/jwt");
 
 // Auth routes
-const { login, register } = require("../controllers/authController");
+const { login, register, logout } = require("../controllers/authController");
 
 router.post("/login", verifyPassword, login);
 router.post("/register", hashPassword, register);
+router.post("/logout", logout);
 
 // Session routes
 const {

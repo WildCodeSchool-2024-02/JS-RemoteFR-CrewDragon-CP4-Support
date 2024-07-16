@@ -7,7 +7,7 @@ function SessionsList() {
 			<h1>Je suis le composant : `SessionsList`</h1>
 			<ul>
 				{sessions.map((session) => (
-					<li key={session._id}>{session.title}</li>
+					<li key={session.id}>{session.title}</li>
 				))}
 			</ul>
 		</section>

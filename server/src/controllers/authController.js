@@ -23,7 +23,13 @@ const register = async (req, res, next) => {
 	}
 };
 
+const logout = (req, res, next) => {
+	res.clearCookie("token");
+	res.status(200).send("Déconnexion réussie");
+};
+
 module.exports = {
 	login,
 	register,
+	logout,
 };
