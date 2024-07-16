@@ -38,7 +38,11 @@ const getSupportById = async (req, res, next) => {
 
 const updateSupport = async (req, res, next) => {
 	try {
-		const support = await update(+req.params.id, req.body);
+		const support = await getById(+req.params);
+		if (!support) {
+			return res.status(404).send({ message: "support not found" });
+		}
+		await update(+req.params.id, req.body);
 		res.status(200).send(support);
 	} catch (error) {
 		next(error);

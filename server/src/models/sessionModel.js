@@ -6,8 +6,16 @@ const prisma = require("../db/prisma");
 
 // Create
 const create = async (session) => {
+	const { users, ...rest } = session;
 	return await prisma.session.create({
-		data: session,
+		data: {
+			...rest,
+			users: {
+				connect: {
+					id: users,
+				},
+			},
+		},
 	});
 };
 
@@ -20,14 +28,32 @@ const getById = async (id) => {
 
 // Read All
 const getAll = async () => {
-	return await prisma.session.findMany();
+	return await prisma.session.findMany({
+		include: {
+			users: {
+				select: {
+					id: true,
+					email: true,
+					name: true,
+				},
+			},
+		},
+	});
 };
 
 // Update
 const update = async (id, session) => {
+	const { users, ...rest } = session;
 	return await prisma.session.update({
 		where: { id },
-		data: session,
+		data: {
+			...rest,
+			users: {
+				connect: {
+					id: users,
+				},
+			},
+		},
 	});
 };
 
