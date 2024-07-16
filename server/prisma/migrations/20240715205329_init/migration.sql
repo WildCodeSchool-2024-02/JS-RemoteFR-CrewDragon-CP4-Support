@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE `Support` ADD COLUMN `checked` BOOLEAN NOT NULL DEFAULT false,
-    ADD COLUMN `like` INTEGER NOT NULL DEFAULT 0;

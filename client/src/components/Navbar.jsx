@@ -5,12 +5,9 @@ function Navbar() {
 	const { user, handleLogout } = useUser();
 
 	const navConnected = [
-		{ name: "Poster un support", link: "#" },
-		{ name: "Voir les supports", link: "#" },
-		{ name: "Voir les sessions", link: "/sessions" },
+		{ name: "Les supports", link: "/supports" },
+		{ name: "Les sessions", link: "/sessions" },
 	];
-
-	const navNotConnected = [{ name: "Voir les supports", link: "#" }];
 
 	return (
 		<header className="text-gray-600 body-font">
@@ -22,19 +19,7 @@ function Navbar() {
 					<span className="ml-3 text-xl">Support wheels</span>
 				</Link>
 				<nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-					{user === null ? (
-						<>
-							{navNotConnected.map((item, index) => (
-								<Link
-									className="mr-5 hover:text-gray-900"
-									key={index}
-									to={item.link}
-								>
-									{item.name}
-								</Link>
-							))}
-						</>
-					) : (
+					{user && (
 						<>
 							{navConnected.map((item, index) => (
 								<Link

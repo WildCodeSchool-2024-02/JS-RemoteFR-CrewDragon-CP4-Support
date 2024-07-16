@@ -7,6 +7,7 @@ import App from "./pages/App.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
 import SessionsList from "./pages/SessionsList.jsx";
+import SupportsList from "./pages/SupportsList.jsx";
 import Admin from "./pages/Admin.jsx";
 
 // Add Context
@@ -20,7 +21,7 @@ import "react-toastify/dist/ReactToastify.min.css";
  * Appel axios
  */
 
-import { getSessions } from "./services/axios";
+import { getSessions, getSupports } from "./services/axios";
 import ErrorElement from "./pages/ErrorElement.jsx";
 import Error404 from "./pages/Error404.jsx";
 import Home from "./pages/Home.jsx";
@@ -50,6 +51,21 @@ const router = createBrowserRouter([
 					const response = await getSessions();
 					return {
 						sessions: response.data,
+					};
+				},
+			},
+			{
+				path: "/supports",
+				element: <SupportsList />,
+				errorElement: <ErrorElement />,
+				loader: async () => {
+					const promisesAll = await Promise.all([
+						getSupports(),
+						getSessions(),
+					]);
+					return {
+						supports: promisesAll[0].data,
+						sessions: promisesAll[1].data,
 					};
 				},
 			},

@@ -20,7 +20,22 @@ const getById = async (id) => {
 
 // Read All
 const getAll = async () => {
-	return await prisma.support.findMany();
+	return await prisma.support.findMany({
+		include: {
+			user: {
+				select: {
+					id: true,
+					name: true,
+				},
+			},
+			session: {
+				select: {
+					id: true,
+					title: true,
+				},
+			},
+		},
+	});
 };
 
 // Update
