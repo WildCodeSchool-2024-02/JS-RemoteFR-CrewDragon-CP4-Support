@@ -4,10 +4,14 @@ import { useUser } from "../contexts/userContext";
 function Navbar() {
 	const { user, handleLogout } = useUser();
 
-	const nav = [
-		{ name: "First", link: "#" },
-		{ name: "Second", link: "#" },
+	const navConnected = [
+		{ name: "Poster un support", link: "#" },
+		{ name: "Voir les supports", link: "#" },
+		{ name: "Voir les sessions", link: "/sessions" },
 	];
+
+	const navNotConnected = [{ name: "Voir les supports", link: "#" }];
+
 	return (
 		<header className="text-gray-600 body-font">
 			<div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -18,15 +22,31 @@ function Navbar() {
 					<span className="ml-3 text-xl">Support wheels</span>
 				</Link>
 				<nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-					{nav.map((item, index) => (
-						<a
-							key={index}
-							href={item.link}
-							className="mr-5 hover:text-gray-900"
-						>
-							{item.name}
-						</a>
-					))}
+					{user === null ? (
+						<>
+							{navNotConnected.map((item, index) => (
+								<Link
+									className="mr-5 hover:text-gray-900"
+									key={index}
+									to={item.link}
+								>
+									{item.name}
+								</Link>
+							))}
+						</>
+					) : (
+						<>
+							{navConnected.map((item, index) => (
+								<Link
+									className="mr-5 hover:text-gray-900"
+									key={index}
+									to={item.link}
+								>
+									{item.name}
+								</Link>
+							))}
+						</>
+					)}
 				</nav>
 
 				{user === null ? (

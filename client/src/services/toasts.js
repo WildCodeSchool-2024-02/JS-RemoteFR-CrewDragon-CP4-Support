@@ -7,6 +7,9 @@ export const toasts = {
 	error: (message) => {
 		toast.error(message);
 	},
+	loading: (message) => {
+		toast.info(message);
+	},
 };
 
 // Usage:

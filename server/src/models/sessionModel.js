@@ -39,6 +39,9 @@ const getAll = async () => {
 				},
 			},
 		},
+		orderBy: {
+			createdAt: "desc",
+		},
 	});
 };
 
