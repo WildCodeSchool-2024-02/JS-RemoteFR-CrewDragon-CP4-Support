@@ -4,6 +4,7 @@ const {
 	getById,
 	update,
 	destroy,
+	join,
 } = require("../models/sessionModel");
 
 const createSession = async (req, res, next) => {
@@ -54,10 +55,24 @@ const deleteSession = async (req, res, next) => {
 	}
 };
 
+const joinSession = async (req, res, next) => {
+	try {
+		const session = await getById(+req.params.id);
+		if (!session) {
+			return res.status(404).send({ message: "Session not found" });
+		}
+		await join(+req.params.id, req.user.id);
+		res.status(200).send(session);
+	} catch (error) {
+		next(error);
+	}
+};
+
 module.exports = {
 	createSession,
 	getSessions,
 	getSessionById,
 	updateSession,
 	deleteSession,
+	joinSession,
 };

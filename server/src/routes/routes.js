@@ -13,6 +13,7 @@ router.post("/register", hashPassword, register);
 // Session routes
 const {
 	createSession,
+	joinSession,
 	getSessions,
 	getSessionById,
 	updateSession,
@@ -20,6 +21,7 @@ const {
 } = require("../controllers/sessionController");
 
 router.post("/sessions", verifyToken, isTrainer, createSession);
+router.put("/sessions/:id/join", verifyToken, joinSession);
 router.get("/sessions", verifyToken, getSessions);
 router.get("/sessions/:id", verifyToken, getSessionById);
 router.put("/sessions/:id", verifyToken, isTrainer, updateSession);

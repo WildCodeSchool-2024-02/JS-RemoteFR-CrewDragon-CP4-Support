@@ -35,6 +35,7 @@ const getAll = async () => {
 					id: true,
 					email: true,
 					name: true,
+					role: true,
 				},
 			},
 		},
@@ -64,10 +65,26 @@ const destroy = async (id) => {
 	});
 };
 
+// Join Session
+
+const join = async (id, user) => {
+	return await prisma.session.update({
+		where: { id },
+		data: {
+			users: {
+				connect: {
+					id: user,
+				},
+			},
+		},
+	});
+};
+
 module.exports = {
 	create,
 	getById,
 	getAll,
 	update,
 	destroy,
+	join,
 };
