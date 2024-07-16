@@ -5,20 +5,16 @@ const instance = axios.create({
 	withCredentials: true,
 });
 
-const instanceWithoutAuth = axios.create({
-	baseURL: import.meta.env.VITE_API_URL || "http://localhost:5500",
-});
-
 /**
  * All routes related to auth
  */
 
 export const register = async (user) => {
-	return await instanceWithoutAuth.post("/api/register", user);
+	return await instance.post("/api/register", user);
 };
 
 export const login = async (user) => {
-	return await instanceWithoutAuth.post("/api/login", user);
+	return await instance.post("/api/login", user);
 };
 
 /**
@@ -29,6 +25,7 @@ export const createSession = async (session) => {
 };
 
 export const getSessions = async () => {
+	// send cookie token to authorize the request
 	return await instance.get("/api/sessions");
 };
 

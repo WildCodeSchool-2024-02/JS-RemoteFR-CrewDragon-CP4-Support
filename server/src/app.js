@@ -1,13 +1,17 @@
 require("dotenv").config();
 
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const app = express();
 const router = require("./routes/routes");
 const cors = require("cors");
 
+app.use(cookieParser());
+
 app.use(
 	cors({
 		origin: [process.env.CLIENT_URL],
+		credentials: true,
 	})
 );
 

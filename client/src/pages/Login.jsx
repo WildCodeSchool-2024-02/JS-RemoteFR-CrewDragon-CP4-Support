@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { register } from "../services/axios";
-function Register() {
+import { login } from "../services/axios";
+function Login() {
 	const [user, setUser] = useState({
 		email: "tony@admin.com",
-		name: "tony",
 		password: "tony",
 	});
 
@@ -16,13 +15,13 @@ function Register() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const response = await register(user);
-		console.log(response);
+		const response = await login(user);
+		console.log(response.data);
 	};
 
 	return (
 		<section>
-			<h1>Je suis le composant : `Register`</h1>
+			<h1>Je suis le composant : `Login`</h1>
 			<form onSubmit={handleSubmit}>
 				<input
 					type="email"
@@ -32,23 +31,16 @@ function Register() {
 					onChange={handleChange}
 				/>
 				<input
-					type="text"
-					name="name"
-					placeholder="Name"
-					value={user.name}
-					onChange={handleChange}
-				/>
-				<input
 					type="password"
 					name="password"
 					placeholder="********"
 					value={user.password}
 					onChange={handleChange}
 				/>
-				<button type="submit">Créer un compte</button>
+				<button type="submit">Login</button>
 			</form>
 		</section>
 	);
 }
 
-export default Register;
+export default Login;
