@@ -1,5 +1,4 @@
 import { useContext, createContext, useState, useMemo } from "react";
-import { toasts } from "../services/toasts";
 import { logout } from "../services/axios";
 
 const UserContext = createContext();
@@ -10,7 +9,7 @@ export const UserContextProvider = ({ children }) => {
 	const handleLogout = () => {
 		logout();
 		setUser(null);
-		toasts.success("Déconnexion réussie");
+		window.location.href = "/";
 	};
 
 	const handleLogin = (user) => {
