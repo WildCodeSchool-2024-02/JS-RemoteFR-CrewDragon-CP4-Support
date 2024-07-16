@@ -1,14 +1,17 @@
 import { Outlet } from "react-router-dom";
-import { useUser } from "../contexts/userContext";
-function App() {
-	const { user } = useUser();
-	console.log("user", user);
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+
+export default function App() {
 	return (
-		<section className="bg-red-800">
-			<h1>Je suis le composant : `App`</h1>
-			<Outlet />
-		</section>
+		<div className="flex min-h-screen flex-col">
+			<Navbar />
+			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+				<div className="mx-auto max-w-3xl">
+					<Outlet />
+				</div>
+			</div>
+			<Footer />
+		</div>
 	);
 }
-
-export default App;
