@@ -21,6 +21,8 @@ import "react-toastify/dist/ReactToastify.min.css";
  */
 
 import { getSessions } from "./services/axios";
+import ErrorElement from "./pages/ErrorElement.jsx";
+import Error404 from "./pages/Error404.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -38,6 +40,7 @@ const router = createBrowserRouter([
 			{
 				path: "/sessions",
 				element: <SessionsList />,
+				errorElement: <ErrorElement />,
 				loader: async () => {
 					const response = await getSessions();
 					return {
@@ -50,12 +53,17 @@ const router = createBrowserRouter([
 	{
 		path: "/admin",
 		element: <Admin />,
+		errorElement: <ErrorElement />,
 		children: [
 			{
 				path: "/admin",
 				element: <h1>Admin</h1>,
 			},
 		],
+	},
+	{
+		path: "*",
+		element: <Error404 />,
 	},
 ]);
 
