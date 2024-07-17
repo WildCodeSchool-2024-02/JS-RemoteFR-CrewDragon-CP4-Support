@@ -7,6 +7,7 @@ function Navbar() {
 	const navConnected = [
 		{ name: "Les supports", link: "/supports" },
 		{ name: "Les sessions", link: "/sessions" },
+		{ name: "Go support", link: "/wheel-support" },
 	];
 
 	return (

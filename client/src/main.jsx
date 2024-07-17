@@ -22,6 +22,7 @@ import { userSession, getSupports, getSessions } from "./services/axios";
 import ErrorElement from "./pages/ErrorElement.jsx";
 import Error404 from "./pages/Error404.jsx";
 import Home from "./pages/Home.jsx";
+import Wheel from "./pages/Wheel.jsx";
 
 // Wrap the router with a component that loads the user
 const RouterWithUser = () => {
@@ -58,6 +59,22 @@ const RouterWithUser = () => {
 				{
 					path: "/supports",
 					element: <SupportsList />,
+					errorElement: <ErrorElement />,
+					loader: async () => {
+						const promisesAll = await Promise.all([
+							getSupports(),
+							userSession(user?.id),
+						]);
+
+						return {
+							supports: promisesAll[0].data,
+							sessions: promisesAll[1].data.sessions,
+						};
+					},
+				},
+				{
+					path: "/wheel-support",
+					element: <Wheel />,
 					errorElement: <ErrorElement />,
 					loader: async () => {
 						const promisesAll = await Promise.all([
