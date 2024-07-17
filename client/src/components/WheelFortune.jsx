@@ -30,8 +30,6 @@ function WheelFortune({ data, sessions }) {
 		setTransformedData(transformData(data, getSession));
 	}, [data, getSession]);
 
-	console.log(transformedData);
-
 	const [mustSpin, setMustSpin] = useState(false);
 	const [prizeNumber, setPrizeNumber] = useState(0);
 

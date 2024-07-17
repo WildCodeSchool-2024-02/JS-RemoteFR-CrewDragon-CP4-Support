@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { UserIcon, UserMinusIcon } from "@heroicons/react/24/solid";
 import { useUser } from "../contexts/userContext";
 function Navbar() {
@@ -23,13 +23,19 @@ function Navbar() {
 					{user && (
 						<>
 							{navConnected.map((item, index) => (
-								<Link
-									className="mr-5 hover:text-gray-900"
+								<NavLink
+									className={({ isActive, isPending }) =>
+										`mr-5 hover:text-gray-900 ${
+											isActive
+												? "text-gray-900 underline underline-offset-4"
+												: ""
+										}`
+									}
 									key={index}
 									to={item.link}
 								>
 									{item.name}
-								</Link>
+								</NavLink>
 							))}
 						</>
 					)}
