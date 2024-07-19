@@ -23,7 +23,7 @@ function Login() {
 			e.preventDefault();
 			const response = await login(user);
 			handleLogin(response.data);
-			toasts.success("Connexion réussie");
+			toasts.success(`Ravie de te revoir ${response.data.name} 👋`);
 			nav("/");
 		} catch (error) {
 			toasts.error("Erreur lors de la connexion");

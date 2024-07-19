@@ -2,7 +2,7 @@ import { Wheel } from "react-custom-roulette";
 import { useEffect, useState } from "react";
 
 function WheelFortune({ data, sessions }) {
-	const [getSession, setGetSession] = useState("");
+	const [getSession, setGetSession] = useState(0);
 	const [transformedData, setTransformedData] = useState([{ option: "" }]);
 
 	const handleGetSession = (e) => {
@@ -16,7 +16,7 @@ function WheelFortune({ data, sessions }) {
 				const { title, session, ...rest } = item;
 				return {
 					...rest,
-					option: `${title} - ${session.title}`,
+					option: `${title}`,
 					session: {
 						...session,
 						option: session.title,

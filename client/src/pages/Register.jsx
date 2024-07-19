@@ -21,10 +21,12 @@ function Register() {
 		try {
 			e.preventDefault();
 			await register(user);
-			toasts.success("Utilisateur créé avec succès");
+			toasts.success("C'est bon, tu es enregistré 💪");
 			nav("/login");
 		} catch (error) {
-			toasts.error("Erreur lors de la création de l'utilisateur");
+			toasts.error(
+				"Oups, une erreur lors de la création de l'utilisateur #malaise"
+			);
 		}
 	};
 

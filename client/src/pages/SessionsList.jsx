@@ -4,7 +4,9 @@ import {
 	HandThumbUpIcon,
 	TrashIcon,
 	PencilIcon,
+	StarIcon,
 } from "@heroicons/react/24/solid";
+
 import {
 	joinSession,
 	getSessions,
@@ -14,6 +16,7 @@ import {
 } from "../services/axios";
 import { toasts } from "../services/toasts";
 import { useUser } from "../contexts/userContext";
+
 function SessionsList() {
 	const { user: userConnected } = useUser();
 	const { sessions: initialSessions } = useLoaderData();
@@ -44,7 +47,7 @@ function SessionsList() {
 	const handleDeleteSession = async (id) => {
 		try {
 			await deleteSession(id);
-			toasts.success("Session supprimée avec succès");
+			toasts.info("Session supprimée avec succès");
 			const response = await getSessions();
 			setSessions(response.data);
 		} catch (error) {
@@ -159,6 +162,12 @@ function SessionsList() {
 									</th>
 									<th
 										scope="col"
+										className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+									>
+										Mon crew préféré !
+									</th>
+									<th
+										scope="col"
 										className="relative py-3.5 pl-3 pr-4 sm:pr-0"
 									>
 										<span className="sr-only">Edit</span>
@@ -182,6 +191,9 @@ function SessionsList() {
 											</td>
 											<td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 text-center">
 												{session.users.length}
+											</td>
+											<td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 text-center">
+												<StarIcon className="h-5 w-5" />
 											</td>
 											<td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
 												<button

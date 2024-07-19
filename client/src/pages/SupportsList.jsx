@@ -8,6 +8,7 @@ import {
 	PlusCircleIcon,
 	MinusCircleIcon,
 } from "@heroicons/react/24/solid";
+
 import {
 	getSupports,
 	createSupport,
@@ -19,6 +20,7 @@ import {
 } from "../services/axios";
 import { toasts } from "../services/toasts";
 import { useUser } from "../contexts/userContext";
+
 function SupportList() {
 	const { user: userConnected } = useUser();
 	const { supports: initialeSupport } = useLoaderData();
@@ -41,7 +43,7 @@ function SupportList() {
 	const handleDeleteSupport = async (id) => {
 		try {
 			await deleteSupport(id);
-			toasts.success("support supprimée avec succès");
+			toasts.info("Le support est bien supprimée avec succès");
 			const response = await getSupports();
 			setSupports(response.data);
 		} catch (error) {
@@ -53,7 +55,6 @@ function SupportList() {
 	};
 
 	const handleAddSupport = async () => {
-		console.log({ newSupportTitle, selectedSession });
 		try {
 			if (newSupportTitle === "" || selectedSession === null) {
 				toasts.error("Veuillez remplir tous les champs");
@@ -64,7 +65,7 @@ function SupportList() {
 				userId: userConnected.id,
 				sessionId: +selectedSession,
 			});
-			toasts.success("support ajoutée avec succès");
+			toasts.success("Super, le support est ajouté !");
 			const response = await getSupports();
 			setSupports(response.data);
 			setShowModal(false);
@@ -77,13 +78,13 @@ function SupportList() {
 		}
 	};
 
-	const handleLikeSupport = async (id) => {
+	const handleCheckedSupport = async (id) => {
 		try {
 			const support = supports.find((support) => support.id === id);
 			await isDoneSupport(id, {
 				checked: !support.checked,
 			});
-			toasts.success("support modifiée avec succès");
+			toasts.success("Et hop, un support en plus fait !");
 			const response = await getSupports();
 			setSupports(response.data);
 		} catch (error) {
@@ -101,7 +102,7 @@ function SupportList() {
 				userId: userConnected.id,
 				sessionId: +selectedSession,
 			});
-			toasts.success("support modifiée avec succès");
+			toasts.success("Le support est bien modifié !");
 			const response = await getSupports();
 			setSupports(response.data);
 			setShowModal(false);
@@ -127,7 +128,7 @@ function SupportList() {
 				setSupports(response.data);
 			}
 
-			toasts.success("support modifiée avec succès");
+			toasts.success("On a bien ajouté ton vote 💪");
 			const response = await getSupports();
 		} catch (error) {
 			toasts.error(
@@ -258,7 +259,7 @@ function SupportList() {
 											<td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 text-center">
 												<button
 													onClick={() => {
-														handleLikeSupport(
+														handleCheckedSupport(
 															support.id
 														);
 													}}
