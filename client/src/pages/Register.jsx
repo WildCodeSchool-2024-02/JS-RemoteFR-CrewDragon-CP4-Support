@@ -5,9 +5,9 @@ import { register } from "../services/axios";
 function Register() {
 	const nav = useNavigate();
 	const [user, setUser] = useState({
-		email: "tony@admin.com",
-		name: "tony",
-		password: "tony",
+		email: "",
+		name: "",
+		password: "",
 	});
 
 	const handleChange = (e) => {
