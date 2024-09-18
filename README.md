@@ -9,6 +9,20 @@
   </a>
 </p>
     
+## Utilisations
+
+Pour utiliser le projet, il faut cloner le dépôt, puis installer les dépendances avec la commande `npm run install:all`.
+
+Ensuite, il faut créer le fichier `.env` dans le dossier `server` par rapport au fichier `.env.sample` et remplir les champs.
+
+Pour prisma, il faut faire la commande
+
+```bash
+npx prisma migrate dev --name init
+```
+
+Ensuite, il faut lancer le serveur avec la commande `npm run dev`.
+
 ## Auteur
 
 👤 **Anthony Gorski**
@@ -16,11 +30,9 @@
 -   𝕏 - (Twitter): [@Gorski_Anthony](https://twitter.com/Gorski_Anthony)
 -   GitHub: [@GorskiAnthony](https://github.com/GorskiAnthony)
 
-
 ## Affichez votre soutien
 
-Donnez un ⭐️ si ce projet vous a aidé !
----
+## Donnez un ⭐️ si ce projet vous a aidé !
 
 ### 🗃️ Version
 
@@ -31,3 +43,7 @@ Donnez un ⭐️ si ce projet vous a aidé !
 ### 👋 Qui suis-je ?
 
 Je suis **Anthony Gorski**, développeur web et formateur à la [Wild Code School](https://www.wildcodeschool.com/fr-FR).
+
+```
+
+```
