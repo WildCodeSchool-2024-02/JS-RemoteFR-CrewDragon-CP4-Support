@@ -7,8 +7,8 @@ function Login() {
 	const nav = useNavigate();
 	const { handleLogin } = useUser();
 	const [user, setUser] = useState({
-		email: "tony@admin.com",
-		password: "tony",
+		email: "",
+		password: "",
 	});
 
 	const handleChange = (e) => {
